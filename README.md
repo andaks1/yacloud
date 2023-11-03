@@ -156,7 +156,7 @@ resource "yandex_lb_target_group" "ttg1" {
 ```
 
 2. Скриншот статуса балансировщика и целевой группы:
-![lbscreen](img/zadanie1/o1_01.png)
+![lbscreen](img/zadanie1/01_01.png)
 
 3. Скриншот страниц, демонстрирующий работу балансировщика:
 ![eth0](img/zadanie1/01_02.png) 
