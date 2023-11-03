@@ -155,6 +155,31 @@ resource "yandex_lb_target_group" "ttg1" {
 #  }
 ```
 
+Код файла meta.yml:
+```bash
+#cloud-config
+disable_root: true
+timezone: Europe/Moscow
+repo_update: true
+repo_upgrade: true
+apt:
+  preserve_sources_list: true
+packages:
+  - nginx
+runcmd:
+  - [ systemctl, nginx-reload ]
+  - [ systemctl, enable, --now, nginx.service ]
+  - [ sh, -c, "echo $(hostname | cut -d '.' -f 1) > /var/www/html/index.html" ]
+  - [ sh, -c, "echo $(ip add) >> /var/www/html/index.html" ]
+users:
+  - name: andaks
+    groups: sudo
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh-authorized-keys:
+      - ssh-rsa AAAAB3NzaC1
+```
+
 2. Скриншот статуса балансировщика и целевой группы:
 ![lbscreen](img/zadanie1/01_01.png)
 
